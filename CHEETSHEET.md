@@ -104,6 +104,7 @@ Phone photos are often massive. If an image takes up your whole screen, switch t
 ```html
 <img src="images/sample_image_1.jpg" width="400">
 ```
+<img src="images/sample_image_1.jpg" width="400">
 
 ### Example 3: Centering an Image
 If you want your documentation to look clean and professional, you can center the image on the page using this HTML block.
@@ -113,6 +114,9 @@ If you want your documentation to look clean and professional, you can center th
   <img src="images/sample_image_1.jpg" width="400">
 </p>
 ```
+<p align="center">
+<img src="images/sample_image_1.jpg" width="200">
+</p>
 
 ### Example 4: Side-by-Side Images
 Want to show the front and back of your build, or your app next to your hardware? Just put two HTML image tags on the exact same line with a space between them. 
@@ -120,6 +124,7 @@ Want to show the front and back of your build, or your app next to your hardware
 ```html
 <img src="images/sample_image_1.jpg" width="300"> <img src="images/sample_image_2.jpg" width="300">
 ```
+<img src="images/sample_image_1.jpg" width="300"> <img src="images/sample_image_2.jpg" width="300">
 
 *(Note: Ensure their combined width is less than ~800 so they fit next to each other on most screens).*
 
