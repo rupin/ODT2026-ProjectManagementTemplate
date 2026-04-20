@@ -15,7 +15,7 @@
 ## Fork and rename this repository
 After forking this repository, rename it using the format:
 
-`ODT-2026-TeamName`
+`ODT-2026-Team13_Ananya_and_Zoya`
 
 ### Example
 `ODT-2026-PixelWizards`
@@ -52,20 +52,20 @@ By the final review, this README should clearly show:
 # 1. Team Identity
 
 ## 1.1 Studio / Group Name
-`[Enter your group name]`
+`[Group 13]`
 
 ## 1.2 Team Members
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `[Student 1]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
-| `[Student 2]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `[Ananya]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `[Zoya]` | `[Coding / App / Fabrication / Mechanics]` | `[Electronics ]` | `[Sequencing Logic,Integration,Systems Thinking]` |
 
 ## 1.3 Project Title
-`[Enter the title of your project]`
+'Psychedelicacy`
 
 ## 1.4 One-Line Pitch
-`[Describe your project in one sentence]`
+`Card-operated dispenser that detects card swipe via IR sensor, flashes pink loading lights, then swings servo flap open with green confirmation to dispense candy.`
 
 ## 1.5 Expanded Project Idea
 In 1–2 paragraphs, explain:
@@ -74,8 +74,9 @@ In 1–2 paragraphs, explain:
 - what makes it fun, curious, engaging, strange, satisfying, competitive, or delightful,
 - what technologies are involved.
 
-**Response:**  
-`[Write here]`
+**Response:**
+`Psychedelicacy is a playful card-activated dispenser that lights up and swings open to release a surprise treat when you swipe a card past an IR sensor.It captures that exciting "did it work?" moment as the pink lights chase around,building anticipation before green floods in and the flap swings open to drop your treat creating a simple, responsive, and surprisingly addictive moment.
+What makes it fun is the playful rhythm: the quick sensor ping, the glowing buildup, and that satisfying servo whirr delivering instant payoff.Each swipe feels like a mini game with reliable magic, sparking curiosity for "one more go." It's powered by an IR sensor for detection,NeoPixel LEDs for vibrant feedback and a servo for smooth delivery of the treat.`
 
 ---
 
@@ -101,7 +102,10 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[Write here]`
+`The experience is a small, tactile exchange where a person takes a simple action and receives a small treat as a response.It is designed as a playful, hands-on moment rather than just a machine transaction, so the experience feels more like an interaction than a purchase.
+The participant should feel curious, amused and rewarded. The goal is to create a light sense of anticipation before the treat arrives, followed by a small burst of satisfaction when it does.
+Someone would want to try it again because the experience is quick, easy, and pleasantly repetitive.The combination of curiosity, control and instant reward makes it feel enjoyable each time, almost like a tiny game they can return to.
+`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -109,7 +113,7 @@ Complete the sentence below:
 > We are designing this project as if we are a small creative studio making a **[toy / game / playable object / interactive experience]** for **[children / teens / adults / classmates / exhibition visitors / mixed audience]**.
 
 **Response:**  
-`[Write here]`
+`We are designing this project as if we are a small creative studio making a playable object for mixed audience.`
 
 ---
 
@@ -120,15 +124,15 @@ List what inspired the project.
 
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `Object` | `Vending machine card reader` | `Simple swipe detection creating  "contactless" activation` |
+| `Toy` | `Gumball machines	` | `Variable timing builds emotional investment while linear file advances automatically into rotating scoop; copied this for candies naturally sliding into quarter-circle "trap" on servo return which is based on gravity.` |
+| `Toy` | `Pez dispensers` | `Head rotates 90° to capture candy from vertical stack, then back releases exactly one; taught how a  quarter-circle depth positioning naturally meters single candies` |
 
 ## 3.2 Original Twist
 What makes your project original?
 
 **Response:**  
-`[Write here]`
+`The dispensing mechanism draws from the PEZ dispenser's single-file candy stacking and the revolver cylinder's rotary chamber logic, but reimagines both in a new way,a quarter-circle servo-driven cavity that uses gravity and hole depth to release exactly one candy per trigger, without springs or complex mechanical parts.Combined with an IR-based card swipe replacing a traditional coin slot, the entire system achieves touchless, one-at-a-time dispensing using just a servo and a sensor , making it simpler, cheaper and more hygienic than any existing consumer dispenser design.`
 
 ---
 
@@ -144,37 +148,37 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Write here]`
+`swipe card → IR detects → pink lights animation → green flash + servo dispenses/rotates → servo flap resets + lights off → repeat`
 
 ## 4.2 Intended Player / Audience
 
 | Question | Response |
 |---|---|
-| Who is this for? | `[Write here]` |
-| Age range | `[Write here]` |
-| Solo or multiplayer | `[Write here]` |
-| Expected duration of one round | `[Write here]` |
-| What should the player feel? | `[Write here]` |
-| Is explanation required before use? | `[Write here]` |
+| Who is this for? | `Anyone craving a quick hit of playful delight from everyday spaces-Impulse-driven kids in malls,arcade enthusiasts` |
+| Age range | `Age-inclusive - 4 - 60` |
+| Solo or multiplayer | `Solo` |
+| Expected duration of one round | `4–5 seconds `|
+| What should the player feel? | `Enchanting "just one more" compulsion` |
+| Is explanation required before use? | `No,intuitive "swipe = reward" can be discovered with the help of card slot placement at the front` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[How does the player first encounter it?]`
-2. **Start:** `[How do they begin?]`
-3. **First Action:** `[What do they do first?]`
-4. **Main Interaction:** `[What keeps happening during use?]`
-5. **System Response:** `[How does the project respond?]`
-6. **Win / Lose / End Condition:** `[How does one round end?]`
-7. **Reset:** `[How does the next round begin?]`
+1. **Approach:** `Notices glowing NeoPixels and queued candies in a desk-sized dispenser`
+2. **Start:** `Spots IR sensor slot labeled "Swipe card here →"`
+3. **First Action:** `Swipes the card - kept there`
+4. **Main Interaction:** `Watches pink "loading" lights chase around ring during 1-second anticipation build`
+5. **System Response:** `Green flood lights and servo whirr as quarter-circle pocket rotates 90°, dropping exactly one candy through hole`
+6. **Win / Lose / End Condition:** `Not applicable - Candy falls out always`
+7. **Reset:** `Flap smoothly returns to 0°, lights turn off, sensor immediately ready for new cycle`
 
 ## 4.4 Rules of Play
 If your project is a game, list the rules clearly.
 
-- `[Rule 1]`
-- `[Rule 2]`
-- `[Rule 3]`
-- `[Rule 4]`
+- `Not applicable`
+- `Not applicable`
+- `Not applicable`
+- `Not applicable`
 
 ---
 
@@ -183,24 +187,24 @@ If your project is a game, list the rules clearly.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[Condition 1]`
-- [ ] `[Condition 2]`
-- [ ] `[Condition 3]`
-- [ ] `[Condition 4]`
-- [ ] `[Condition 5]`
+- [1] `Card swipe reliably triggers-any card past IR sensor consistently detects within 2cm`
+- [1] `Exactly one candy per activation-quarter-circle servo pocket releases single candy every time`
+- [1] `Full light show executes-pink loading animation (1s) → green dispense → lights off, all NeoPixels respond instantly without flicker`
+- [1] `Smooth mechanical reset-servo returns to 0° position after every dispense, ready for next swipe within 4 seconds total cycle`
+- [1] `Runs continuous cycles without sensor false triggers, motor stall or LED failure`
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
 
 **Response:**  
-`[Write here]`
+`IR sensor detecting motion → single LED blinks → servo rotates 90° to drop one candy → returns to load next`
 
 ## 5.3 Stretch Features
 What features are nice to have but not essential?
 
-- `[Stretch feature 1]`
-- `[Stretch feature 2]`
-- `[Stretch feature 3]`
+- `Sound effects-  buzzers play jingle or  chime during pink lights, "ka-ching" on dispense`
+- `Candy counter display- small screen shows "Candies left: 23" to build urgency as hopper empties`
+- `Wireless tally- Bluetooth to phone app tracks swipes or phone motion is used to dispense candy`
 
 ---
 
@@ -209,17 +213,17 @@ What features are nice to have but not essential?
 ## 6.1 Project Type
 Check all that apply.
 
-- [ ] Electronics-based
-- [ ] Mechanical
-- [ ] Sensor-based
+- [1] Electronics-based
+- [1] Mechanical
+- [1] Sensor-based
 - [ ] App-connected
-- [ ] Motorized
+- [1] Motorized
 - [ ] Sound-based
-- [ ] Light-based
+- [1] Light-based
 - [ ] Screen/UI-based
-- [ ] Fabricated structure
+- [1] Fabricated structure
 - [ ] Game logic based
-- [ ] Installation / tabletop experience
+- [1] Installation / tabletop experience
 - [ ] Other: `[Write here]`
 
 ## 6.2 High-Level System Description
@@ -233,16 +237,21 @@ Include:
 - app interaction if any.
 
 **Response:**  
-`[Write here]`
+`Input: Card swipes break the IR sensor beam (Pin 34 detects proximity/motion).
+Processing: ESP32 microcontroller confirms detection with 50ms debounce, then triggers light sequence and servo motion.
+Output:
+NeoPixel ring (16 LEDs, Pin 2): Pink chasing animation (1s loading) → green flood (dispensing)
+Servo motor (Pin 5): Quarter-circle pocket rotates 0°→90°→0° to release exactly one candy
+Physical structure: Linear candy queue feeds into deep quarter-circle servo pocket—gravity naturally loads next candy when flap returns to home position.`
 
 ## 6.3 Input / Output Map
 
 | System Part | Type | What It Does |
 |---|---|---|
-| `[Button / Sensor / Switch / App Input]` | Input | `[Describe]` |
-| `[ESP32 / Controller]` | Processing | `[Describe]` |
-| `[LED / Motor / Servo / Buzzer / Display]` | Output | `[Describe]` |
-| `[Mechanical Assembly]` | Physical Action | `[Describe]` |
+| ` Sensor` | Input | `IR sensor detects card swipe by beam interruption` |
+| `[ESP32 ` | Processing | `Reads sensor → double-checks signal → runs light sequence → controls servo timing → loops for next activation` |
+| `[LED / Servo ` | Output | `Neopixel-Pink chasing animation (loading feedback) → green flood (dispensing confirmation) → off (ready state)/Rotates quarter-circle pocket 0°→90°→0° to scoop and release exactly one candy from queue` |
+| `Quarter-circle Candy Pocket` | Physical Action | `Deep pocket traps single candy by geometry; gravity auto-refills from linear queue on return to 0°` |
 
 ---
 
@@ -252,7 +261,7 @@ Include:
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`https://github.com/academicsananya1234-ship-it/ODT2026-group13-sec-B/blob/zoya---branch/images/concept-sketch.jpg`
 
 Example:
 ```md
@@ -268,16 +277,16 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`https://github.com/academicsananya1234-ship-it/ODT2026-group13-sec-B/blob/zoya---branch/images/labelled_build_sketch.jpg`
 
 ## 7.3 Approximate Dimensions
 
 | Dimension | Value |
 |---|---|
-| Length | `[Write here]` |
-| Width | `[Write here]` |
-| Height | `[Write here]` |
-| Estimated weight | `[Write here]` |
+| Length | `35cm` |
+| Width | `35cm` |
+| Height | `32cm` |
+| Estimated weight | `850g` |
 
 ---
 
@@ -286,16 +295,16 @@ Add a sketch with labels showing:
 ## 8.1 Mechanical Features
 Check all that apply.
 
-- [ ] Gears
+- [1] Gears
 - [ ] Pulleys
 - [ ] Belt drives
 - [ ] Linkages
-- [ ] Hinges
-- [ ] Shafts
+- [1] Hinges
+- [1] Shafts
 - [ ] Springs
 - [ ] Bearings
 - [ ] Wheels
-- [ ] Sliders
+- [1] Sliders
 - [ ] Levers
 - [ ] Not applicable
 
@@ -303,7 +312,7 @@ Check all that apply.
 Describe the mechanism and what it is meant to do.
 
 **Response:**  
-`[Write here]`
+`Gear shaft on servo drives quarter-circle pocket as single-index metering chamber-linear candy queue gravity-feeds into deep pocket arc. Servo rotates exactly 90° via hinge mount, sliding card guide aligns pocket hole with exit chute to release trapped candy. Return to 0° naturally scoops next candy from queue via pocket depth geometry + slider mechanism. Pure rotational scoop and gravity reload for reliable single-dispensing.`
 
 ## 8.3 Motion Planning
 If something moves, explain:
@@ -314,7 +323,20 @@ If something moves, explain:
 - what could go wrong.
 
 **Response:**  
-`[Write here]`
+`What moves: Quarter-circle candy pocket attached to servo horn
+What causes movement: ESP32 triggers PWM signal to servo motor (Pin 5, 50Hz) after IR sensor confirms card swipe
+How far it moves:0° (home, candy loading) → 90° (dispense, hole aligned with chute) → 0° (reset)
+Total: 180° per cycle (90° out + 90° back)
+How fast it moves:
+settle_ms=300ms at 0° (gentle start)
+settle_ms=800ms at 90° (allows candy fall)
+settle_ms=500ms return to 0° (quick reset)
+Total cycle: ~2.1 seconds motion
+What could go wrong:
+Servo stall/jam—candy too big for pocket depth 
+Incomplete return—pocket stays partial-open, double-dispensing 
+Backlash—loose servo horn causes sloppy 90° alignment 
+Gravity hang-up—next candy doesn't load (solution: slight pocket tilt + vibration from settle delay)`
 
 ## 8.4 Simulation / CAD / Animation Before Making
 If your project includes mechanical motion, document the digital planning before fabrication.
@@ -371,8 +393,8 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Tool / Platform | Purpose |
 |---|---|
-| `[MicroPython / Arduino / MIT App Inventor / CAD tool / other]` | `[Purpose]` |
-| `[Tool]` | `[Purpose]` |
+| `MicroPython` | `Main firmware on ESP32 for IR sensor reading, NeoPixel control, servo PWM timing, and main interaction loop` |
+| `MIT App Inventor` | `Backup block-based prototyping for coin/card detection logic and servo control testing during development` |
 
 ## 10.2 Software Logic
 Describe what the code must do.
@@ -387,7 +409,23 @@ Include:
 - reset behavior.
 
 **Response:**  
-`[Write here]`
+`To create a card-operated dispensing mechanism using an IR sensor, servo motor, and NeoPixel LEDs-  It detects a card, shows visual feedback, and actuates a flap to dispense an item.
+Startup Behavior
+Positions the servo flap to 0° and turns off NeoPixels. Flashes the first NeoPixel pink then green twice, then prints "Ready. Waiting for coin..." to the console.
+Input Handling
+Monitors the IR sensor continuously in the main loop with a 50ms wait time.
+Sensor Reading
+The card_detected() function reads Pin 34 (IR sensor). It confirms detection with a 50ms debounce if the value is 0.
+Decision Logic
+Triggers dispensing only on confirmed card detection. There isnt multiple card handling—single detection per cycle.
+Output Behavior
+NeoPixels : Pink chasing animation during 1-second "loading," green fill during servo action, then off.
+Servo : Moves 0° → 90° → 0° to open/close flap, using PWM at 50Hz with auto-deinit to stop vibration.
+Prints "Coin detected!" and "Done. Ready for next coin." to console after each cycle.
+Communication Logic
+Console-only via print() statements for status.
+Reset Behavior
+After dispensing, waits 1 second, turns off lights, and loops back to sensor waiting for the next card swipe. Servo always returns to 0° post-dispense.`
 
 ## 10.3 Code Flowchart
 Insert a flowchart showing your code logic.
@@ -403,12 +441,39 @@ Suggested sequence:
 - error handling.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`https://github.com/academicsananya1234-ship-it/ODT2026-group13-sec-B/blob/zoya---branch/images/code_flowchart.jpg <img width="1367" height="3700" alt="code_flowchart" src="https://github.com/user-attachments/assets/a967f372-5711-43b3-983b-c127b7237159" />
+`
 
 ## 10.4 Pseudocode
 
 ```text
-[Write your pseudocode here]
+STARTUP:
+    servo_move(0°)          // Position pocket to load candy
+    flash NeoPixel pink+green 2x  // Welcome animation
+    PRINT "Ready for card swipe"
+
+MAIN LOOP FOREVER:
+    READ IR sensor (Pin 34)
+    
+    IF sensor == LOW:
+        WAIT 50ms                 // Debounce delay
+        IF sensor STILL LOW:
+            PRINT "Card detected!"
+            
+            // PROCESSING PHASE
+            pink_loading_animation(1000ms)   // Pink chase effect
+            
+            // DISPENSE PHASE  
+            green_fill_neopixels()         // Success lights
+            servo_move(0°, 300ms)          // Settle home
+            servo_move(90°, 800ms)         // Dump candy
+            servo_move(0°, 500ms)          // Reload next candy
+            
+            neopixel_off()
+            PRINT "Candy dispensed!"
+            WAIT 1000ms                   // Brief pause
+    
+    WAIT 50ms                     
 ```
 
 ---
@@ -416,7 +481,7 @@ Suggested sequence:
 # 11. MIT App Inventor Plan
 
 ## 11.1 Is an app part of this project?
-- [ ] Yes
+- [1] Yes
 - [ ] No
 
 If yes, complete this section.
@@ -433,28 +498,28 @@ Examples:
 - displaying data.
 
 **Response:**  
-`[Write here]`
+`The app acts as a backup payment and control system when the physical card/coin mechanism is unavailable or fails. It adds convenience by allowing users to add digital credit, reset balance, and send commands directly from their phone, making the candy dispenser more accessible, reliable, and interactive.`
 
 ## 11.3 App Features
 
 | Feature | Purpose |
 |---|---|
-| `[Bluetooth connect button]` | `[Purpose]` |
-| `[Score display]` | `[Purpose]` |
-| `[Control button / slider / label]` | `[Purpose]` |
+| `Bluetooth connect button` | `Connects the mobile app to the ESP32 dispenser wirelessly for communication and control.` |
+| `Credit / Score display` | `Shows the current balance or available credits added by the user.` |
+| `Add Credit button/ Reset button/Send button` | `Increases digital credit balance for candy dispensing./Clears the current credit and sets the balance back to zero./Sends the updated credit value or command to the dispenser system.` |
 
 ## 11.4 UI Mockup
 Insert a sketch or screenshot of the app interface.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`https://github.com/academicsananya1234-ship-it/ODT2026-group13-sec-B/blob/zoya---branch/images/credit-app_screen.png`
 
 ## 11.5 App Screen Flow
 
-1. `[Step 1]`
-2. `[Step 2]`
-3. `[Step 3]`
-4. `[Step 4]`
+1. `Open the app and tap the Bluetooth Connect button to pair with the ESP32 candy dispenser.`
+2. `Check current credit balance.`
+3. `Tap Add Credit (₹1 / ₹2 buttons) or Reset to manage balance.`
+4. `Press Send to transfer the credit value to the dispenser and activate candy dispensing.`
 
 ---
 
@@ -554,46 +619,46 @@ Include:
 
 ### Week 1 — Plan and De-risk
 Expected outcomes:
-- [ ] Idea finalized
+- [1] Idea finalized
 - [ ] Core interaction decided
-- [ ] Sketches made
+- [1] Sketches made
 - [ ] BOM completed
-- [ ] Purchase needs identified
-- [ ] Key uncertainty identified
-- [ ] Basic feasibility tested
+- [1] Purchase needs identified
+- [1] Key uncertainty identified
+- [1] Basic feasibility tested
 
 ### Week 2 — Build Subsystems
 Expected outcomes:
-- [ ] Electronics tests completed
+- [1] Electronics tests completed
 - [ ] CAD / structure planning completed
-- [ ] App UI started if needed
-- [ ] Mechanical concept tested
-- [ ] Main subsystems partially working
+- [1] App UI started if needed
+- [1] Mechanical concept tested
+- [1] Main subsystems partially working
 
 ### Week 3 — Integrate
 Expected outcomes:
-- [ ] Physical body built
-- [ ] Electronics integrated
-- [ ] Code connected to hardware
+- [1] Physical body built
+- [1] Electronics integrated
+- [1] Code connected to hardware
 - [ ] App connected if required
-- [ ] First playable version exists
+- [1] First playable version exists
 
 ### Week 4 — Refine and Finish
 Expected outcomes:
-- [ ] Technical bugs reduced
-- [ ] Playtesting completed
-- [ ] Improvements made
-- [ ] Documentation completed
-- [ ] Final build ready
+- [1] Technical bugs reduced
+- [1] Playtesting completed
+- [1] Improvements made
+- [1] Documentation completed
+- [1] Final build ready
 
 ## 14.2 Weekly Update Log
 
 | Week | Planned Goal | What Actually Happened | What Changed | Next Steps |
 |---|---|---|---|---|
-| Week 1 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 2 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 3 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 4 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
+| Week 1 | `Finalize idea, sketches, BOM, identify risks, test feasibility` | `decided, rough sketches made, materials like foamboard/MDF identified, basic servo + sensor testing done` | `BOM not fully completed in first week, shifted focus to testing mechanism first` | `Complete BOM and finalize dispensing mechanism dimensions` |
+| Week 2 | `Build subsystems, test electronics, start app UI as backup, structure planning` | `physical hand-built structure chosen` | `physical hand-built structure chosen` | `Build outer body and improve subsystem wiring` |
+| Week 3 | `Integrate body, electronics, code, first working prototype` | `Foamboard/MDF body built, electronics mounted, code linked with servo + sensor, first working candy dispenser achieved-rotating disc` | `App connection kept optional backup i` | `Improve stability, candy flow, and user experience` |
+| Week 4 | `test users, improve design, complete documentation` | `changed candy mechanism completely,Servo vibration reduced, dispensing timing improved, playtested with users, report and presentation completed` | `focused more on physical aspects` | `Prepare final demo and polish aesthetics` |
 
 ---
 
