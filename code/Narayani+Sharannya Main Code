@@ -1,0 +1,415 @@
+"""
+main.py — Robot Basketball Game (v5)
+ESP32 + MicroPython
+
+CHANGES FROM v4:
+  1. Game fully restarts on any miss (score resets to 0, start sequence replays)
+  2. Flap durations increased: [4500, 3500, 3000, 2500] ms
+  3. Button changed to momentary push button (NO — Normally Open):
+       One leg → GPIO 27, other leg → GND
+       Pin configured as PULL_UP, LOW = pressed (same as floor pedal logic)
+  4. Eyes redesigned as simple rectangles with black pupil cutouts.
+       Expressions change by adjusting rect height and pupil position.
+
+PINS:
+  Servo mouth  → GPIO 13
+  Servo left   → GPIO 12
+  Servo right  → GPIO 14
+  OLED SDA     → GPIO 21
+  OLED SCL     → GPIO 22
+  Button       → GPIO 27 (PULL_UP, LOW when pressed — momentary NO push button, other leg to GND)
+  Buzzer       → GPIO 26
+  NeoPixel     → GPIO 25 (10 LEDs)
+  IR sensor    → GPIO 33 (LOW = detected)
+"""
+
+from machine import Pin, PWM, I2C
+import ssd1306
+import neopixel
+import utime
+
+# ─── PIN CONFIG ─────────────────────────────────────────
+SERVO_MOUTH_PIN  = 13
+SERVO_LEFT_PIN   = 12
+SERVO_RIGHT_PIN  = 14
+OLED_SDA         = 21
+OLED_SCL         = 22
+OLED_ADDR        = 0x3C
+BUTTON_PIN       = 27
+BUZZER_PIN       = 26
+NEOPIXEL_PIN     = 25
+NUM_PIXELS       = 10
+IR_PIN           = 33
+OLED_W, OLED_H   = 128, 64
+
+# ─── GAME CONFIG ────────────────────────────────────────
+MAX_SCORE            = 4
+BUTTON_WINDOW_MS     = 3000
+FLAP_DURATIONS       = [4500, 3500, 3000, 2500]   # ms mouth stays open per shot
+IDLE_BLINK_INTERVAL  = 1800
+
+# ─── HARDWARE INIT ──────────────────────────────────────
+i2c  = I2C(0, sda=Pin(OLED_SDA), scl=Pin(OLED_SCL), freq=400000)
+oled = ssd1306.SSD1306_I2C(OLED_W, OLED_H, i2c, addr=OLED_ADDR)
+
+# Momentary NO push button: one leg GPIO27, other leg GND
+# PULL_UP → reads HIGH normally, LOW when pressed
+button = Pin(BUTTON_PIN, Pin.IN, Pin.PULL_UP)
+
+ir  = Pin(IR_PIN, Pin.IN)
+np  = neopixel.NeoPixel(Pin(NEOPIXEL_PIN), NUM_PIXELS)
+buz = PWM(Pin(BUZZER_PIN), freq=1000, duty=0)
+
+# ─── SERVO CLASS ────────────────────────────────────────
+class Servo:
+    def __init__(self, pin, min_us=500, max_us=2500, freq=50):
+        self.pwm    = PWM(Pin(pin), freq=freq)
+        self.min_us = min_us
+        self.max_us = max_us
+        self.period = 1_000_000 // freq
+
+    def angle(self, deg):
+        deg  = max(0, min(180, deg))
+        us   = self.min_us + (self.max_us - self.min_us) * deg / 180
+        duty = int(us / self.period * 1023)
+        self.pwm.duty(duty)
+
+    def off(self):
+        self.pwm.duty(0)
+
+mouth_servo = Servo(SERVO_MOUTH_PIN)
+left_servo  = Servo(SERVO_LEFT_PIN)
+right_servo = Servo(SERVO_RIGHT_PIN)
+mouth_servo.angle(0)
+left_servo.angle(0)
+right_servo.angle(0)
+
+# ─── BUTTON HELPER ──────────────────────────────────────
+def is_pressed():
+    """Returns True if momentary push button is pressed (LOW with PULL_UP)."""
+    return button.value() == 0
+
+# ─── BUZZER ─────────────────────────────────────────────
+def beep(freq=800, ms=150):
+    buz.freq(freq); buz.duty(512)
+    utime.sleep_ms(ms)
+    buz.duty(0)
+
+def beep_score():       beep(900, 120); utime.sleep_ms(30); beep(1200, 180)
+def beep_fail():        beep(300, 200); utime.sleep_ms(30); beep(200, 400)
+def beep_window_open(): beep(700, 60)
+def beep_countdown():   beep(500, 80)
+def beep_win():
+    for f in [800, 1000, 1200, 1500, 1800]:
+        beep(f, 100); utime.sleep_ms(30)
+
+# ─── NEOPIXELS ──────────────────────────────────────────
+def np_clear():
+    for i in range(NUM_PIXELS): np[i] = (0, 0, 0)
+    np.write()
+
+def np_set_score(s):
+    np_clear()
+    for i in range(s * 2): np[i] = (0, 180, 80)
+    np.write()
+
+def np_win_blink(times=6):
+    colors = [(255,80,0),(0,200,255),(200,0,255),(255,220,0),(0,255,100)]
+    for _ in range(times):
+        for i in range(NUM_PIXELS): np[i] = colors[i % len(colors)]
+        np.write(); utime.sleep_ms(120)
+        np_clear();  utime.sleep_ms(120)
+
+# ─── OLED TEXT HELPERS ──────────────────────────────────
+
+def centred(text, y, col=1):
+    x = max(0, (OLED_W - len(text) * 8) // 2)
+    oled.text(text, x, y, col)
+
+def bold_centred(text, y, col=1):
+    x = max(0, (OLED_W - len(text) * 8) // 2)
+    oled.text(text, x,   y,   col)
+    oled.text(text, x+1, y,   col)
+    oled.text(text, x,   y+1, col)
+    oled.text(text, x+1, y+1, col)
+
+# ─── EYE GEOMETRY ───────────────────────────────────────
+#
+# Two simple white rectangles side by side on the 128x64 OLED.
+# A black rectangle is cut out of the centre of each as the pupil.
+#
+# Left eye:  x=10   Right eye: x=74
+# Each eye:  44px wide × 32px tall, top at y=16
+
+EYE_W   = 44
+EYE_H   = 32
+EYE_Y   = 16
+L_EYE_X = 10
+R_EYE_X = 74
+
+# Pupil size and centred offsets within the eye rect
+PUP_W  = 16
+PUP_H  = 20
+PUP_OX = (EYE_W - PUP_W) // 2   # horizontal offset from eye left edge
+PUP_OY = (EYE_H - PUP_H) // 2   # vertical offset from eye top edge
+
+def draw_eyes(mode):
+    """
+    Draw both rectangle eyes for the given mode.
+
+    Modes:
+      'open'    — full rect, centred pupil
+      'half'    — half-height rect (mid-blink)
+      'closed'  — thin horizontal bar (fully shut)
+      'angry'   — full rect with blacked-out top brow, pupil shifted up
+      'sad'     — full rect, pupil shifted down
+      'excited' — taller rect (wide open), centred pupil
+    """
+    oled.fill(0)
+
+    if mode == 'closed':
+        # Thin 4px bar per eye — squinted shut
+        bar_y = EYE_Y + EYE_H // 2 - 2
+        oled.fill_rect(L_EYE_X, bar_y, EYE_W, 4, 1)
+        oled.fill_rect(R_EYE_X, bar_y, EYE_W, 4, 1)
+
+    elif mode == 'half':
+        # Half-height block — mid-blink frame
+        h  = EYE_H // 2
+        ey = EYE_Y + h // 2
+        oled.fill_rect(L_EYE_X, ey, EYE_W, h, 1)
+        oled.fill_rect(R_EYE_X, ey, EYE_W, h, 1)
+
+    elif mode == 'angry':
+        # Full rect, top 6px blacked out as heavy brow, pupil pushed up
+        oled.fill_rect(L_EYE_X, EYE_Y, EYE_W, EYE_H, 1)
+        oled.fill_rect(R_EYE_X, EYE_Y, EYE_W, EYE_H, 1)
+        oled.fill_rect(L_EYE_X, EYE_Y, EYE_W, 6, 0)   # brow cutout
+        oled.fill_rect(R_EYE_X, EYE_Y, EYE_W, 6, 0)
+        py = EYE_Y + 4                                  # pupil shifted up
+        oled.fill_rect(L_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+        oled.fill_rect(R_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+
+    elif mode == 'sad':
+        # Full rect, pupil dropped toward bottom
+        oled.fill_rect(L_EYE_X, EYE_Y, EYE_W, EYE_H, 1)
+        oled.fill_rect(R_EYE_X, EYE_Y, EYE_W, EYE_H, 1)
+        py = EYE_Y + EYE_H - PUP_H - 2
+        oled.fill_rect(L_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+        oled.fill_rect(R_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+
+    elif mode == 'excited':
+        # Taller rect for wide-open look, centred pupil
+        ey = EYE_Y - 4
+        eh = EYE_H + 8
+        oled.fill_rect(L_EYE_X, ey, EYE_W, eh, 1)
+        oled.fill_rect(R_EYE_X, ey, EYE_W, eh, 1)
+        py = ey + (eh - PUP_H) // 2
+        oled.fill_rect(L_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+        oled.fill_rect(R_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+
+    else:  # 'open' — default
+        oled.fill_rect(L_EYE_X, EYE_Y, EYE_W, EYE_H, 1)
+        oled.fill_rect(R_EYE_X, EYE_Y, EYE_W, EYE_H, 1)
+        py = EYE_Y + PUP_OY
+        oled.fill_rect(L_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+        oled.fill_rect(R_EYE_X + PUP_OX, py, PUP_W, PUP_H, 0)
+
+    oled.show()
+
+# ─── SCREENS ────────────────────────────────────────────
+
+def screen_start():
+    oled.fill(0)
+    bold_centred("READY?", 20)
+    centred("stomp to play", 42)
+    oled.show()
+
+def screen_countdown(n):
+    oled.fill(0)
+    bold_centred(str(n), 24)
+    oled.show()
+
+def screen_shoot():
+    draw_eyes('open')
+    # Overlay SHOOT at bottom without clearing eyes
+    oled.fill_rect(0, 54, OLED_W, 10, 0)
+    bold_centred("SHOOT!", 54)
+    oled.show()
+
+def screen_hit(score):
+    oled.fill(0)
+    bold_centred("HIT!", 10)
+    centred("{}/{}".format(score, MAX_SCORE), 40)
+    oled.show()
+
+def screen_miss():
+    oled.fill(0)
+    bold_centred("MISS!", 10)
+    centred("restarting...", 40)
+    oled.show()
+
+def screen_win():
+    oled.fill(0)
+    bold_centred("YOU WIN!", 8)
+    centred("4/4  LEGEND", 36)
+    oled.show()
+
+# ─── BLINK ──────────────────────────────────────────────
+def blink_once():
+    draw_eyes('half');   utime.sleep_ms(60)
+    draw_eyes('closed'); utime.sleep_ms(80)
+    draw_eyes('half');   utime.sleep_ms(60)
+    draw_eyes('open')
+
+# ─── GAME STATE ─────────────────────────────────────────
+score = 0
+
+def reset_game():
+    global score
+    score = 0
+    mouth_servo.angle(0)
+    left_servo.angle(0)
+    right_servo.angle(0)
+    np_clear()
+    print("Game reset.")
+
+def get_flap_duration():
+    return FLAP_DURATIONS[min(score, MAX_SCORE - 1)]
+
+# ─── GAME PHASES ────────────────────────────────────────
+
+def phase_start_sequence():
+    screen_start()
+    utime.sleep_ms(1200)
+    for n in [3, 2, 1]:
+        screen_countdown(n)
+        beep_countdown()
+        utime.sleep_ms(900)
+    draw_eyes('open')
+    utime.sleep_ms(400)
+
+
+def phase_idle():
+    """Eyes blink 2–3 times, then hold open as shoot-window cue."""
+    cycles = 2 + (utime.ticks_ms() % 2)
+    for _ in range(cycles):
+        draw_eyes('open')
+        utime.sleep_ms(IDLE_BLINK_INTERVAL)
+        blink_once()
+        utime.sleep_ms(400)
+    draw_eyes('open')
+    utime.sleep_ms(600)
+
+
+def phase_window():
+    """
+    SHOOT prompt active for BUTTON_WINDOW_MS.
+    Momentary NO push button: PULL_UP, LOW = pressed.
+    Returns True if button pressed in time.
+    """
+    screen_shoot()
+    beep_window_open()
+    start = utime.ticks_ms()
+    while utime.ticks_diff(utime.ticks_ms(), start) < BUTTON_WINDOW_MS:
+        if is_pressed():
+            print("[WINDOW] Button pressed!")
+            return True
+        utime.sleep_ms(15)
+    return False
+
+
+def phase_scoring():
+    """
+    Mouth opens 180 degrees. Returns True if IR detects ball within flap window.
+    """
+    duration = get_flap_duration()
+    print("[SCORING] Flap open for {}ms".format(duration))
+    mouth_servo.angle(180)
+    utime.sleep_ms(150)
+    start = utime.ticks_ms()
+    detected = False
+    while utime.ticks_diff(utime.ticks_ms(), start) < duration:
+        if ir.value() == 0:
+            detected = True
+            break
+        utime.sleep_ms(15)
+    mouth_servo.angle(0)
+    utime.sleep_ms(200)
+    mouth_servo.off()
+    return detected
+
+
+def phase_score_point():
+    global score
+    score += 1
+    print("[SCORE] {}/{}".format(score, MAX_SCORE))
+    draw_eyes('excited')
+    utime.sleep_ms(400)
+    screen_hit(score)
+    beep_score()
+    np_set_score(score)
+    utime.sleep_ms(1400)
+    draw_eyes('open')
+
+
+def phase_miss():
+    """Sad eyes → miss screen → FULL RESTART from score 0."""
+    print("[MISS] Restarting game.")
+    draw_eyes('sad')
+    utime.sleep_ms(700)
+    screen_miss()
+    beep_fail()
+    np_clear()
+    utime.sleep_ms(1500)
+    reset_game()
+    phase_start_sequence()
+
+
+def phase_win():
+    print("[WIN] 4/4!")
+    draw_eyes('excited')
+    utime.sleep_ms(300)
+    screen_win()
+    beep_win()
+    left_servo.angle(150)
+    right_servo.angle(150)
+    utime.sleep_ms(400)
+    np_win_blink(8)
+    for _ in range(5):
+        draw_eyes('excited'); utime.sleep_ms(180)
+        screen_win();         utime.sleep_ms(180)
+    left_servo.angle(0);  right_servo.angle(0)
+    utime.sleep_ms(400)
+    left_servo.off();     right_servo.off()
+
+
+# ─── MAIN ───────────────────────────────────────────────
+def main():
+    print("=== Robot Basketball v5 ===")
+    reset_game()
+    phase_start_sequence()
+
+    while True:
+        phase_idle()
+
+        pressed = phase_window()
+
+        if not pressed:
+            phase_miss()   # missed window → full restart inside phase_miss
+            continue
+
+        ball_in = phase_scoring()
+
+        if ball_in:
+            phase_score_point()
+            if score >= MAX_SCORE:
+                phase_win()
+                reset_game()
+                phase_start_sequence()
+        else:
+            print("[MISS] No ball detected.")
+            phase_miss()   # no ball → full restart
+
+
+main()
