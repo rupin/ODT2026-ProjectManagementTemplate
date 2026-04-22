@@ -1,4 +1,4 @@
-# Open Design and Technology  
+<img width="1600" height="1281" alt="image" src="https://github.com/user-attachments/assets/b1156374-f3f5-4046-83a8-3e402dba5736" /># Open Design and Technology  
 ## Final Project README
 
 > **Project Weight:** 70%  
@@ -52,20 +52,20 @@ By the final review, this README should clearly show:
 # 1. Team Identity
 
 ## 1.1 Studio / Group Name
-`[Enter your group name]`
+`Bamboozle`
 
 ## 1.2 Team Members
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `[Student 1]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
-| `[Student 2]` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `Samridhi` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `Gauri` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
 
 ## 1.3 Project Title
-`[Enter the title of your project]`
+`crossfire`
 
 ## 1.4 One-Line Pitch
-`[Describe your project in one sentence]`
+`Crossfire is a two-player physical game where you claim territory on a shared light strip through repeated strikes — testing speed, strength, and the will to keep going.`
 
 ## 1.5 Expanded Project Idea
 In 1–2 paragraphs, explain:
@@ -75,7 +75,8 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-`[Write here]`
+`Crossfire is a head-to-head endurance contest disguised as a territorial dispute. Each player faces their own strike pad and hammers it to push a shared LED strip toward their colour. The strip is always pulling back to neutral, so the moment a player slows down, their hard-won territory bleeds into the opponent's colour. Victory belongs to the player who sustains it until the time runs out.
+The experience sits somewhere between a rage room and a tug of war. When the timer ends, the result is read off the light itself. Crossfire is built around two shock sensors feeding strike data directly into an ESP32 microcontroller, which drives a WS2812B LED strip as the battlefield.`
 
 ---
 
@@ -101,7 +102,9 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[Write here]`
+`Crossfire is a fast, physical, two-player game that is immediately understood and impossible to put down.
+Urgency first the moment the round starts, there is no time to think. Then desperation as the strip bleeds back toward center the instant you slow down. Then tunnel vision, the particular focus of doing one simple physical thing as hard and as fast as you can while knowing someone else is doing the same thing on the other side. The game is designed to make players forget everything except the pad in front of them.
+Because the result always feels unfinished. Losing never feels conclusive — you slowed down at the wrong moment and you know you had more in you. The simplicity of the mechanic means there is always a clear answer to why you lost and an obvious thing to do differently next time.`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -109,7 +112,7 @@ Complete the sentence below:
 > We are designing this project as if we are a small creative studio making a **[toy / game / playable object / interactive experience]** for **[children / teens / adults / classmates / exhibition visitors / mixed audience]**.
 
 **Response:**  
-`[Write here]`
+`We are designing this project as if we are a small creative studio making a arcade game for anyone who has ever wanted to hit something.`
 
 ---
 
@@ -120,15 +123,16 @@ List what inspired the project.
 
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `Arcade game | High Striker / Hammer Strong machine | The core idea of measuring physical impact as a game input,effort made visible and immediate` |
+| `game | Tug of War  | The shared rope that both players pull in opposite directions simultaneously` |
+| `Object | Rage room experience | The satisfaction of sustained, uninhibited physical release as a designed experience
+game| battle ship  ` |
 
 ## 3.2 Original Twist
 What makes your project original?
 
 **Response:**  
-`[Write here]`
+`[Most physical games reward a single best action — the hardest throw, the fastest reaction, the perfect shot. Crossfire removes the concept of a winning move entirely. There is no moment of skill, only sustained effort against a strip that never stops working against you. The decay mechanic means the game is actively hostile to both players at all times, which creates a kind of shared suffering underneath the competition. The other original element is the absence of any score, screen, or number — the LED strip is simultaneously the interface, the scoreboard, and the spectacle, readable at a glance by anyone in the room without explanation.]`
 
 ---
 
@@ -144,37 +148,39 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Write here]`
+`[strike → sensor detects → meter shifts → decay pulls back → strike again or lose ground
+]`
 
 ## 4.2 Intended Player / Audience
 
 | Question | Response |
 |---|---|
-| Who is this for? | `[Write here]` |
-| Age range | `[Write here]` |
-| Solo or multiplayer | `[Write here]` |
-| Expected duration of one round | `[Write here]` |
-| What should the player feel? | `[Write here]` |
-| Is explanation required before use? | `[Write here]` |
+| Who is this for? | `[Anyone — no prior experience or skill required]` |
+| Age range | `[10 and up]` |
+| Solo or multiplayer | `[2 players, head-to-head ]` |
+| Expected duration of one round | `[30 seconds ]` |
+| What should the player feel? | `[Urgency, desperation, exhaustion, satisfaction]` |
+| Is explanation required before use? | `[No-the mechanic is self-evident within the first round]` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[How does the player first encounter it?]`
-2. **Start:** `[How do they begin?]`
-3. **First Action:** `[What do they do first?]`
-4. **Main Interaction:** `[What keeps happening during use?]`
-5. **System Response:** `[How does the project respond?]`
-6. **Win / Lose / End Condition:** `[How does one round end?]`
-7. **Reset:** `[How does the next round begin?]`
+1. **Approach:** `[Two players see a strip of light running between two pads, sitting at neutral white in the center.?]`
+2. **Start:** `[A buzzer sounds. The round begins.]`
+3. **First Action:** `[Each player starts striking their pad as fast as they can.]`
+4. **Main Interaction:** `[Players hammer continuously, watching the strip push toward their colour — red or green — while the decay constantly pulls it back toward center.]`
+5. **System Response:** `[Every detected strike shifts the LED boundary one step toward the striking player's side. Between strikes, the boundary drifts back toward neutral at a fixed rate.]`
+6. **Win / Lose / End Condition:** `[When the timer ends, the buzzer fires. Whichever colour holds more than half the strip wins. If the boundary sits exactly at center, the round is a draw.]`
+7. **Reset:** `[The strip animates back to neutral and the buzzer sounds once to signal the next round is ready.]`
 
 ## 4.4 Rules of Play
 If your project is a game, list the rules clearly.
 
-- `[Rule 1]`
-- `[Rule 2]`
-- `[Rule 3]`
-- `[Rule 4]`
+ ⁠  Strike your pad to push the LED boundary toward your colour
+•⁠  ⁠The boundary decays toward center at all times stopping means losing ground
+•⁠  ⁠Both players strike simultaneously there are no turns
+•⁠  ⁠When the timer ends, the player whose colour occupies more than half the strip wins
+•⁠  ⁠Striking the opponent's pad is not permitted
 
 ---
 
@@ -183,25 +189,24 @@ If your project is a game, list the rules clearly.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[Condition 1]`
-- [ ] `[Condition 2]`
-- [ ] `[Condition 3]`
-- [ ] `[Condition 4]`
-- [ ] `[Condition 5]`
+ Both shock sensors reliably detect strikes and report them to the ESP32 without missed or phantom hits
+ The LED strip shifts toward the correct player's colour on every detected strike
+ The decay loop runs continuously and pulls the boundary back toward neutral between strikes
+ The round timer starts, counts down, and triggers the buzzer at zero
+ The strip correctly identifies and displays the winning colour at round end, then resets to neutral for the next round
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
 
 **Response:**  
-`[Write here]`
+`Two shock sensors wired to an ESP32, driving a WS2812B LED strip with a working decay loop and a fixed round timer housed in anything that holds the components in place and gives each player a stable surface to strike. No enclosure finish, no branding, no buzzer required. If the light moves when you hit it and the right colour wins at the end, it is playable.`
 
 ## 5.3 Stretch Features
 What features are nice to have but not essential?
 
-- `[Stretch feature 1]`
-- `[Stretch feature 2]`
-- `[Stretch feature 3]`
-
+Adjustable round timer and decay speed via physical dial or button, allowing players to tune the difficulty before each round
+Buzzer countdown at round start and a distinct end tone so rounds feel ceremonially bracketed without needing a screen
+An Arcade like finsih to the whole project .
 ---
 
 # 6. System Overview
@@ -209,17 +214,17 @@ What features are nice to have but not essential?
 ## 6.1 Project Type
 Check all that apply.
 
-- [ ] Electronics-based
+- [+] Electronics-based
 - [ ] Mechanical
-- [ ] Sensor-based
+- [+] Sensor-based
 - [ ] App-connected
 - [ ] Motorized
-- [ ] Sound-based
-- [ ] Light-based
+- [+] Sound-based
+- [+] Light-based
 - [ ] Screen/UI-based
-- [ ] Fabricated structure
-- [ ] Game logic based
-- [ ] Installation / tabletop experience
+- [+] Fabricated structure
+- [+] Game logic based
+- [+] Installation / tabletop experience
 - [ ] Other: `[Write here]`
 
 ## 6.2 High-Level System Description
@@ -233,17 +238,16 @@ Include:
 - app interaction if any.
 
 **Response:**  
-`[Write here]`
+`[Two shock sensors sit beneath each player's strike pad. Every hit sends a digital signal to the ESP32, which runs a continuous game loop,tracking a single position value that represents where the LED boundary sits between the two players. Each strike nudges that value toward the hitting player's side; a decay function nudges it back toward center every tick. The ESP32 translates that position value into a colour pattern on the WS2812B LED strip in real time ,red expanding from the left, green from the right. When the round timer expires, the ESP32 fires the buzzer, locks the strip on the final state, determines the winner by which colour holds more than half the strip, then resets to neutral for the next round.]`
 
 ## 6.3 Input / Output Map
 
 | System Part | Type | What It Does |
 |---|---|---|
-| `[Button / Sensor / Switch / App Input]` | Input | `[Describe]` |
-| `[ESP32 / Controller]` | Processing | `[Describe]` |
-| `[LED / Motor / Servo / Buzzer / Display]` | Output | `[Describe]` |
-| `[Mechanical Assembly]` | Physical Action | `[Describe]` |
-
+| `[| Shock sensor × 2 | Input | Detects each strike and sends a digital pulse to the ESP32 |
+| ESP32 | Processing | Runs the game loop — counts strikes, applies decay, tracks position, manages timer |
+| WS2812B LED strip | Output | Displays the live territorial boundary in red and green |
+| Buzzer | Output | Signals round start, round end, and winner |
 ---
 
 # 7. Sketches and Visual Planning
@@ -252,7 +256,8 @@ Include:
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`[<img width="1600" height="1281" alt="image" src="https://github.com/user-attachments/assets/52b963dd-f90c-4503-bbe6-c52a3a24238f" />
+]`
 
 Example:
 ```md
@@ -268,16 +273,17 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[Upload image and link here]`
+`[<img width="1440" height="2815" alt="image" src="https://github.com/user-attachments/assets/7761d775-e6cf-4c94-b710-7b611f00ab84" />
+]`
 
 ## 7.3 Approximate Dimensions
 
 | Dimension | Value |
 |---|---|
-| Length | `[Write here]` |
-| Width | `[Write here]` |
-| Height | `[Write here]` |
-| Estimated weight | `[Write here]` |
+| Length | `[16.5in]` |
+| Width | `[12in]` |
+| Height | `[3in]` |
+| Estimated weight | `[1kg]` |
 
 ---
 
@@ -292,7 +298,7 @@ Check all that apply.
 - [ ] Linkages
 - [ ] Hinges
 - [ ] Shafts
-- [ ] Springs
+- [+] Springs
 - [ ] Bearings
 - [ ] Wheels
 - [ ] Sliders
@@ -303,7 +309,7 @@ Check all that apply.
 Describe the mechanism and what it is meant to do.
 
 **Response:**  
-`[Write here]`
+`[a button.]`
 
 ## 8.3 Motion Planning
 If something moves, explain:
@@ -314,7 +320,7 @@ If something moves, explain:
 - what could go wrong.
 
 **Response:**  
-`[Write here]`
+`[the button moves up and down, according to the person clicking it]`
 
 ## 8.4 Simulation / CAD / Animation Before Making
 If your project includes mechanical motion, document the digital planning before fabrication.
@@ -554,19 +560,19 @@ Include:
 
 ### Week 1 — Plan and De-risk
 Expected outcomes:
-- [ ] Idea finalized
+- [+] Idea finalized
 - [ ] Core interaction decided
 - [ ] Sketches made
 - [ ] BOM completed
-- [ ] Purchase needs identified
-- [ ] Key uncertainty identified
+- [+] Purchase needs identified
+- [+] Key uncertainty identified
 - [ ] Basic feasibility tested
 
 ### Week 2 — Build Subsystems
 Expected outcomes:
 - [ ] Electronics tests completed
 - [ ] CAD / structure planning completed
-- [ ] App UI started if needed
+- [-] App UI started if needed
 - [ ] Mechanical concept tested
 - [ ] Main subsystems partially working
 
@@ -732,7 +738,7 @@ What slowed you down?
 How well did you manage time, tasks, and responsibilities?
 
 **Response:**  
-`[Write here]`
+`Our team worked well together in terms of collaboration and idea sharing. We supported each other during problem-solving and were able to divide tasks efficiently when needed.Soldering and building the main structure took a significant amount of time. We faced some technical challenges during this phase, which slowed our overall progress.We managed tasks and responsibilities fairly well by distributing work among team members,and did well on the time mangagement 
 
 ## 19.2 Technical Reflection
 What did you learn about:
@@ -743,7 +749,7 @@ What did you learn about:
 - integration?
 
 **Response:**  
-`[Write here]`
+I learned the basics of electronics through soldering and understanding connections, got some hands-on experience with coding and how small changes affect output, explored simple mechanisms and how parts move together, improved my fabrication skills while building the structure, and understood how important integration is—making sure everything works together smoothly was the most challenging but also the most valuable part.
 
 ## 19.3 Design Reflection
 What did you learn about:
@@ -755,7 +761,7 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-`[Write here]`
+`[]`
 
 ## 19.4 If You Had One More Week
 What would you improve next?
@@ -768,23 +774,23 @@ What would you improve next?
 # 20. Final Submission Checklist
 
 Before submission, confirm that:
-- [ ] Team details are complete
-- [ ] Project description is complete
-- [ ] Inspiration sources are included
-- [ ] Player journey is written
-- [ ] Sketches are added
-- [ ] BOM is complete
-- [ ] Purchase list is complete
-- [ ] Budget summary is complete
-- [ ] Mechanical planning is documented if applicable
+- [+] Team details are complete
+- [+] Project description is complete
+- [+] Inspiration sources are included
+- [+] Player journey is written
+- [+] Sketches are added
+- [+] BOM is complete
+- [+] Purchase list is complete
+- [+] Budget summary is complete
+- [+] Mechanical planning is documented if applicable
 - [ ] App planning is documented if applicable
 - [ ] Code flowchart is added
-- [ ] Task breakdown is complete
-- [ ] Weekly logs are updated
-- [ ] Risk register is complete
-- [ ] Testing log is updated
-- [ ] Playtesting notes are included
-- [ ] Build photos are included
+- [+] Task breakdown is complete
+- [+] Weekly logs are updated
+- [+] Risk register is complete
+- [+] Testing log is updated
+- [+] Playtesting notes are included
+- [+] Build photos are included
 - [ ] Final reflection is written
 
 ---
@@ -818,8 +824,8 @@ project-repo/
 # 22. Instructor Review
 
 ## 22.1 Proposal Approval
-- [ ] Approved to proceed
-- [ ] Approved with changes
+- [+] Approved to proceed
+- [+] Approved with changes
 - [ ] Rework required before proceeding
 
 **Instructor comments:**  
